@@ -2,8 +2,42 @@ import { supabase } from "@/lib/supabase";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import CopyProtection from "@/components/CopyProtection";
+import type { Metadata } from "next";
 
 export const revalidate = 0;
+
+// Dinamik WhatsApp / Sosyal Medya Kart Başlığı
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const { data: poem } = await supabase
+    .from("poems")
+    .select("title, content")
+    .eq("id", id)
+    .single();
+
+  if (!poem) {
+    return {
+      title: "Şiir Bulunamadı - Zeki Şahbaz",
+    };
+  }
+
+  // Şiirin ilk 100 karakterini açıklama yapalım
+  const snippet = poem.content.slice(0, 100).replace(/\n/g, " ") + "...";
+
+  return {
+    title: `${poem.title} - Zeki Şahbaz`,
+    description: snippet,
+    openGraph: {
+      title: `${poem.title} - Zeki Şahbaz Şiirleri`,
+      description: snippet,
+      type: "article",
+    },
+  };
+}
 
 export default async function PoemDetailPage({
   params,
