@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Merriweather } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,6 +12,13 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+// Edebi Şiir Fontu Entegrasyonu
+const merriweather = Merriweather({
+  variable: "--font-serif",
+  weight: ["300", "400", "700"],
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
   title: "Zeki Şahbaz - Şiir Dünyası",
   description:
@@ -20,11 +27,11 @@ export const metadata: Metadata = {
     title: "Zeki Şahbaz - Şiir Dünyası",
     description:
       "Şair Zeki Şahbaz'ın kaleme aldığı en özel şiirler ve video yorumları.",
-    url: "https://zeki-sahbaz-siirleri.vercel.app", // Kendi canlı Vercel URL'in
+    url: "https://zeki-sahbaz-siirleri.vercel.app",
     siteName: "Zeki Şahbaz Şiir Portalı",
     images: [
       {
-        url: "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1200&auto=format&fit=crop", // Şık bir edebiyat/şiir kapak görseli
+        url: "https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1200&auto=format&fit=crop",
         width: 1200,
         height: 630,
         alt: "Zeki Şahbaz Şiir Portalı",
@@ -43,7 +50,7 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${merriweather.variable} antialiased`}
       >
         {children}
       </body>

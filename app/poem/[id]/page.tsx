@@ -101,7 +101,7 @@ export default async function PoemDetailPage({
         {/* TELİF KORUMALI ŞİİR METNİ */}
         <CopyProtection>
           <div className="bg-slate-800/60 p-8 rounded-2xl border border-slate-700/60 shadow-xl">
-            <p className="text-slate-200 italic text-base md:text-lg leading-relaxed whitespace-pre-line">
+            <p className="text-slate-200 font-serif italic text-base md:text-lg leading-relaxed whitespace-pre-line">
               {poem.content}
             </p>
           </div>
